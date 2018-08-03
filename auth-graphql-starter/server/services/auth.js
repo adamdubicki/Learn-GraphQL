@@ -55,14 +55,6 @@ function signup({ email, password, req }) {
     .then(existingUser => {
       if (existingUser) { throw new Error('Email in use'); }
       return user.save();
-    })
-    .then(user => {
-      return new Promise((resolve, reject) => {
-        req.logIn(user, (err) => {
-          if (err) { reject(err); }
-          resolve(user);
-        });
-      });
     });
 }
 
